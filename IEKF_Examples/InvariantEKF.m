@@ -217,7 +217,7 @@ classdef InvariantEKF
                 wp= bp\x_tlast;
                 ep=dp-wp;
                 scalex=exp(-ep.*ep./(2*sigma_p.*sigma_p));
-                Cx=diag(exp(-ep.*ep./(2*sigma_p.*sigma_p)));
+                Cx=diag(exp(-ep.*ep./(2*sigma_p.*sigma_p)));%dv
                 for kk=1:n
                     if(Cx(kk,kk)<0.01)
                         Cx(kk,kk)=0.01;
@@ -227,7 +227,7 @@ classdef InvariantEKF
                 wr= br\H*x_tlast;
                 er=dr-wr;
                 scaley=exp(-er.*er./(2*sigma_r.*sigma_r));
-                Cy=diag(exp(-er.*er./(2*sigma_r.*sigma_r)));
+                Cy=diag(exp(-er.*er./(2*sigma_r.*sigma_r)));% dv
                 for kk=1:m
                     if(Cy(kk,kk)<0.01)
                         Cy(kk,kk)=0.01;
